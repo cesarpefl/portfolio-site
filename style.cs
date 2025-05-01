@@ -74,4 +74,27 @@ footer {
   text-decoration: none;
   font-weight: bold;
 }
+.contact {
+  max-width: 700px;
+  margin: 2rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contact ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.contact li {
+  margin-bottom: 0.5rem;
+}
+
+.contact a {
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: bold;
+}
 
