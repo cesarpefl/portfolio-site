@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cesar Flores | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,75 +17,35 @@
     <section class="about">
       <h2>About Me</h2>
       <p>
-        I'm passionate about blending tech with entertainment—music, podcasts, movies, and interactive experiences. My background spans from hands-on carpentry and mechanics to coding creative projects. I love crafting unique digital vibes that connect with audiences.
+        Passionate about blending entertainment and technology to create unique experiences. With a background in carpentry, mechanics, and tech, I bring a hands-on, problem-solving mindset to creative projects.
       </p>
     </section>
 
     <section class="projects">
       <h2>Featured Project: My Scratch Game</h2>
       <div class="project-content">
-        <iframe
-          src="https://scratch.mit.edu/projects/1167737813/embed"
-          allowtransparency="true"
-          width="485"
-          height="402"
-          frameborder="0"
-          scrolling="no"
-          allowfullscreen
-        ></iframe>
-        <p>
-          This game was built in Scratch and showcases my early passion for game development and visual logic. It’s simple but represents a creative start in interactive entertainment.
-        </p>
+        <iframe src="https://scratch.mit.edu/projects/1167737813/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+        <p>This game was built in Scratch and showcases my early passion for game development and visual logic.</p>
       </div>
     </section>
 
     <section class="resume">
       <h2>My Resume</h2>
       <p>You can view or download my resume below:</p>
-      <a
-        href="https://github.com/cesarpefl/portfolio-site/blob/main/Cesar%20Resume.pdf"
-        target="_blank"
-        class="resume-btn"
-        >📄 View Resume (PDF)</a
-      >
+      <a href="https://github.com/cesarpefl/portfolio-site/blob/main/Cesar%20Resume.pdf" target="_blank" class="resume-btn">📄 View Resume (PDF)</a>
     </section>
 
     <section id="contact" class="contact">
       <h2>Contact Me</h2>
       <p>Let’s collaborate or connect — I’m open to new projects in podcasts, media, and tech.</p>
       <ul>
-        <li>
-          Email:
-          <a href="mailto:Cesarpeflfl@gmail.com" target="_blank"
-            >Cesarpeflfl@gmail.com</a
-          >
-        </li>
-        <li>
-          GitHub:
-          <a href="https://github.com/cesarpefl" target="_blank"
-            >https://github.com/cesarpefl</a
-          >
-        </li>
-        <li>
-          LinkedIn:
-          <a
-            href="https://www.linkedin.com/in/cesar-perez-flores-67198731a/"
-            target="_blank"
-            >https://www.linkedin.com/in/cesar-perez-flores-67198731a</a
-          >
-        </li>
-        <li>
-          Phone:
-          <a href="tel:+17252945085" target="_blank">+1 725-294-5085</a>
-        </li>
+        <li>Email: <a href="mailto:Cesarpeflfl@gmail.com">Cesarpeflfl@gmail.com</a></li>
+        <li>GitHub: <a href="https://github.com/cesarpefl" target="_blank">github.com/cesarpefl</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/cesar-perez-flores-67198731a/" target="_blank">linkedin.com/in/cesar-perez-flores</a></li>
+        <li>Phone: <a href="tel:+17252945085">+1 725-294-5085</a></li>
       </ul>
     </section>
   </main>
-
-  <audio id="bg-music" controls loop>
-    <source src="zen_lofi.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
 
   <footer>
     <p>&copy; 2025 FLY FLORES. Built by hand with HTML, CSS, and curiosity.</p>
@@ -94,27 +54,41 @@
   <!-- Psychedelic mouse follower -->
   <div id="mouse-follower"></div>
 
+  <!-- Music Player -->
+  <div class="music-player">
+    <audio id="background-music" loop preload="auto" src="zen_lofi.mp3"></audio>
+    <button id="music-toggle">▶️ Play Music</button>
+  </div>
+
   <script>
-    // Mouse follower effect
+    // Mouse follower logic
     const follower = document.getElementById("mouse-follower");
     document.addEventListener("mousemove", (e) => {
       follower.style.left = e.pageX + "px";
       follower.style.top = e.pageY + "px";
     });
 
-    // Audio play on user interaction
-    const audio = document.getElementById("bg-music");
-    let musicStarted = false;
-    function startMusic() {
-      if (!musicStarted) {
-        audio.volume = 0.2;
-        audio.play().catch(() => {
-          console.log("User interaction needed to play audio.");
-        });
-        musicStarted = true;
+    // Music player logic
+    const audio = document.getElementById("background-music");
+    const toggleBtn = document.getElementById("music-toggle");
+
+    toggleBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        toggleBtn.textContent = "⏸️ Pause Music";
+      } else {
+        audio.pause();
+        toggleBtn.textContent = "▶️ Play Music";
       }
-    }
-    document.body.addEventListener("click", startMusic);
+    });
+
+    // Try to autoplay softly after user interaction (some browsers require this)
+    window.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        toggleBtn.textContent = "⏸️ Pause Music";
+      }
+    }, { once: true });
   </script>
 </body>
 </html>
