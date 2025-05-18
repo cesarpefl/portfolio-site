@@ -1,94 +1,109 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #111;
-  color: #f2f2f2;
+  background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+  color: #fff;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-a {
-  color: #00b7ff;
-  text-decoration: none;
-  transition: 0.3s ease;
-}
-
-a:hover {
-  text-decoration: underline;
-  color: #1ecfff;
-}
-
-.hero {
-  background: linear-gradient(135deg, #000000, #222222);
-  padding: 4rem 2rem;
+header.hero {
   text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(to right, #ff00cc, #333399);
 }
 
-.hero h1 {
+header.hero h1 {
   font-size: 3rem;
-  margin-bottom: 0.5rem;
+  margin: 0;
 }
 
-.hero p {
-  font-size: 1.25rem;
-  color: #ccc;
+header.hero p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
 }
 
 .cta {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.75rem 1.5rem;
-  background-color: #00b7ff;
-  color: #fff;
-  border-radius: 8px;
-  font-weight: bold;
+  background-color: #ff00cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
   transition: background-color 0.3s ease;
 }
 
 .cta:hover {
-  background-color: #1ecfff;
+  background-color: #d600a3;
 }
 
 main {
+  padding: 2rem 1rem;
   max-width: 900px;
   margin: auto;
-  padding: 2rem;
 }
 
-.projects,
-.resume,
-.contact {
-  margin-bottom: 3rem;
-  background: #1a1a1a;
-  padding: 2rem;
+.projects iframe {
+  max-width: 100%;
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  margin-bottom: 1rem;
 }
 
+.resume-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  background-color: #845ec2;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.resume-btn:hover {
+  background-color: #5e3c99;
+}
+
+.contact ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact li {
+  margin-bottom: 0.5rem;
+}
+
+.contact a {
+  color: #a5f3fc;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #111;
+  color: #888;
+}
+
+/* ABOUT ME SECTION */
 .about {
-  margin-bottom: 3rem;
+  margin: 4rem auto;
   background: radial-gradient(circle at center, #38004c, #0d0d0d);
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
   text-align: center;
-}
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,0,255,0.4), transparent 40%);
-  pointer-events: none;
-  z-index: 1000;
-  transition: transform 0.05s ease;
-  mix-blend-mode: screen;
+  max-width: 800px;
 }
 
 .about h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #ff9eea;
+  margin-bottom: 1rem;
 }
 
 .about p {
@@ -97,46 +112,17 @@ main {
   line-height: 1.8;
 }
 
-.project-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* MOUSE FOLLOWER EFFECT */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.35), transparent 40%);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
 }
-
-.project-content iframe {
-  margin-bottom: 1rem;
-}
-
-.resume-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #00b7ff;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.resume-btn:hover {
-  background-color: #1ecfff;
-}
-
-.contact ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.contact li {
-  margin-bottom: 0.75rem;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #0a0a0a;
-  font-size: 0.9rem;
-  color: #666;
-}
-
