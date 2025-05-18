@@ -5,6 +5,7 @@ body {
   color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
+  cursor: none;
 }
 
 header.hero {
@@ -117,12 +118,29 @@ footer {
   position: fixed;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 0, 255, 0.35), transparent 40%);
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  mix-blend-mode: screen;
+  mix-blend-mode: lighten;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.6), rgba(0, 255, 255, 0.3), transparent);
+  box-shadow:
+    0 0 20px rgba(255, 0, 255, 0.6),
+    0 0 40px rgba(0, 255, 255, 0.4),
+    0 0 80px rgba(255, 255, 255, 0.2);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
