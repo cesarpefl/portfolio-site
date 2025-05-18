@@ -48,11 +48,24 @@
   </main>
 <section class="audio-player">
   <h2>Lo-Fi Vibes</h2>
-  <audio id="bg-music" loop>
+  <audio id="bg-music" controls loop>
   <source src="zen lofi.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
+<script>
+  const audio = document.getElementById("bg-music");
+  let musicStarted = false;
 
+  function startMusic() {
+    if (!musicStarted) {
+      audio.volume = 0.2;
+      audio.play();
+      musicStarted = true;
+    }
+  }
+
+  document.body.addEventListener("click", startMusic);
+</script>
 </section>
 
   <footer>
