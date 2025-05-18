@@ -2,93 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cesar Flores | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cesar Flores  | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href=" Cesar Resume.pdf" target="_blank"> Cesar Resume</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
   <header class="hero">
-    <h1>Hey, I'm Cesar Flores</h1>
-    <p>Builder. Coder. Creative in entertainment and tech.</p>
-    <a href="#contact" class="cta">Get in Touch</a>
+    <h1>Hey, I'm Cesar Flores </h1>
+    <p>Tech-savvy creative blending mechanics, media, and imagination.</p>
   </header>
 
   <main>
-    <section class="about-me">
+    <section class="about">
       <h2>About Me</h2>
-      <p>
-        Passionate about blending technology and entertainment. I bring unique skills from my diverse work experience and love creating immersive interactive projects.
+      <p>I’ve worked as a carpenter, mechanic, resturant server and now in tech — and I’m aiming to bring that real-world creativity into entertainment
       </p>
-    </section>
-
     <section class="projects">
-      <h2>Featured Project: My Scratch Game</h2>
-      <div class="project-content">
-        <iframe
-          src="https://scratch.mit.edu/projects/1167737813/embed"
-          allowtransparency="true"
-          width="485"
-          height="402"
-          frameborder="0"
-          scrolling="no"
-          allowfullscreen
-        ></iframe>
-        <p>
-          This game was built in Scratch and showcases my early passion for game development and visual logic.
-        </p>
-      </div>
-    </section>
-
+        <h2>Projects</h2>
+        <div class="project-card">
+            <h3>Scratch Game: [Baseball]</h3>
+          <p>This is a game I built in Scratch. I designed the logic, gameplay, and visuals myself.</p>
+          <a href="https://scratch.mit.edu/projects/1167737813/" target="_blank">Play the Game</a>
+        </div>
     <section class="resume">
-      <h2>My Resume</h2>
-      <p>You can view or download my resume below:</p>
-      <a href="https://github.com/cesarpefl/portfolio-site/blob/main/Cesar%20Resume.pdf" target="_blank" class="resume-btn">📄 View Resume (PDF)</a>
-    </section>
+  <h2>My Resume</h2>
+  <p>You can view or download my full resume below:</p>
+  <a href="https://github.com/cesarpefl/portfolio-site/blob/main/Cesar%20Resume.pdf" target="_blank" class="resume-btn">📄 View Resume (PDF)</a>
+</section>
 
-    <section id="contact" class="contact">
-      <h2>Contact Me</h2>
-      <p>Let’s collaborate or connect — I’m open to new projects in podcasts, media, and tech.</p>
-      <ul>
-        <li>Email: <a href="mailto:Cesarpeflfl@gmail.com" target="_blank">Cesarpeflfl@gmail.com</a></li>
-        <li>GitHub: <a href="https://github.com/cesarpefl" target="_blank">https://github.com/cesarpefl</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/cesar-perez-flores-67198731a/" target="_blank">https://www.linkedin.com/in/cesar-perez-flores-67198731a</a></li>
-        <li>Phone: <a href="tel:+17252945085">+1 725-294-5085</a></li>
-      </ul>
-    </section>
-
-    <section class="music-player">
-      <h2>Chill Psychedelic Lo-Fi</h2>
-      <audio id="audio" controls preload="auto">
-        <source src="zen%20lofi.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-    </section>
-  </main>
+  </main><section class="contact">
+  <h2>Contact Me</h2>
+  <p>If you'd like to connect or collaborate, feel free to reach out.</p>
+  
+  <ul>
+    <li>Email: <a href="mailto:Cesarpeflfl@gmail.com" target="_blank" >Cesarpeflfl@gmail.com</a></li>
+    <li>GitHub: <a href="https://github.com/cesarpefl" target="_blank">https://github.com/cesarpefl</a></li>
+    <li>LinkedIn: <a href="https://www.linkedin.com/in/cesar-perez-flores-67198731a/" target="_blank">https://www.linkedin.com/in/cesar-perez-flores-67198731</a></li>
+    <li>Phone: <a href= +1 725-294-5085  target="_blank" >+1 725-294-5085</a></li>
+  </ul>
+</section>
 
   <footer>
-    <p>&copy; 2025 FLY FLORES. Built by hand with HTML, CSS, and curiosity.</p>
+    <p>&copy; 2025 Fly Flores Inc. </p>
   </footer>
 
-  <!-- Pulsing Mouse Follower -->
-  <div class="mouse-follower"></div>
-
-  <script>
-    // Pulsing Mouse Follower Script
-    const follower = document.querySelector('.mouse-follower');
-
-    window.addEventListener('mousemove', e => {
-      follower.style.left = e.clientX + 'px';
-      follower.style.top = e.clientY + 'px';
-    });
-
-    // Audio Autoplay Fix (requires user interaction)
-    const audio = document.getElementById('audio');
-    document.body.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-      }
-    });
-  </script>
 </body>
 </html>
-
