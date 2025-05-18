@@ -64,6 +64,39 @@ main {
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
+.about {
+  margin-bottom: 3rem;
+  background: radial-gradient(circle at center, #38004c, #0d0d0d);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+  text-align: center;
+}
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,0,255,0.4), transparent 40%);
+  pointer-events: none;
+  z-index: 1000;
+  transition: transform 0.05s ease;
+  mix-blend-mode: screen;
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #ff9eea;
+}
+
+.about p {
+  font-size: 1.1rem;
+  color: #f1d4f5;
+  line-height: 1.8;
+}
+
 .project-content {
   display: flex;
   flex-direction: column;
