@@ -1,4 +1,4 @@
-#43
+#37
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,27 +47,19 @@
       </ul>
     </section>
   </main>
-<section class="audio-player">
-  <h2>Lo-Fi Vibes</h2>
-  <audio controls loop>
-    <source src="https://pixabay.com/music/beats-soft-sleepy-lofi-easy-zen-322607/" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</section>
 
   <footer>
     <p>&copy; 2025 FLY FLORES. Built by hand with HTML, CSS, and curiosity.</p>
   </footer>
-<div class="cursor-glow"></div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
+  <div class="cursor-glow"></div>
+
+  <script>
     const glow = document.querySelector('.cursor-glow');
     document.addEventListener('mousemove', (e) => {
       glow.style.left = e.clientX + 'px';
       glow.style.top = e.clientY + 'px';
     });
-  });
-</script>
+  </script>
 </body>
 </html>
