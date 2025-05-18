@@ -82,5 +82,23 @@
     });
   });
 </script>
+<script>
+  const audio = document.getElementById('bg-music');
+  let musicStarted = false;
+
+  function startMusic() {
+    if (!musicStarted) {
+      audio.volume = 0.2;  // soft volume
+      audio.play().catch(() => {
+        // Autoplay prevented
+        console.log("User interaction required to start audio.");
+      });
+      musicStarted = true;
+    }
+  }
+
+  document.body.addEventListener('click', startMusic);
+</script>
+
 </body>
 </html>
