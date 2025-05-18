@@ -144,3 +144,8 @@ footer {
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
+/* Optional: Hide system cursor */
+body {
+  cursor: none;
+}
