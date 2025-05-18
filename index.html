@@ -1,4 +1,3 @@
-#37
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +14,6 @@
   </header>
 
   <main>
-    <section class="about">
-      <h2>About Me</h2>
-      <p>
-        I'm Cesar Flores — a hands-on creator with roots in carpentry, mechanics, and tech. From fixing engines to building interactive games, I’m all about turning ideas into reality. Now I’m blending those skills with my love for music, podcasts, and film to make something truly original. Whether it’s behind the scenes or on the mic, I bring a builder’s mindset and a coder’s edge.
-      </p>
-    </section>
-
     <section class="projects">
       <h2>Featured Project: My Scratch Game</h2>
       <div class="project-content">
@@ -33,33 +25,39 @@
     <section class="resume">
       <h2>My Resume</h2>
       <p>You can view or download my resume below:</p>
-      <a href="https://github.com/cesarpefl/portfolio-site/blob/main/Cesar%20Resume.pdf" target="_blank" class="resume-btn">📄 View Resume (PDF)</a>
-    </section>
-
+ <a href="https://github.com/cesarpefl/portfolio-site/blob/main/Cesar%20Resume.pdf" target="_blank" class="resume-btn">📄 View Resume (PDF)</a>
+</section>
+    <section class="about">
+  <h2>About Me</h2>
+  <p>
+    I'm Cesar Flores — a hands-on creator with roots in carpentry, mechanics, and tech. From fixing engines to building interactive games, I’m all about turning ideas into reality. Now I’m blending those skills with my love for music, podcasts, and film to make something truly original. Whether it’s behind the scenes or on the mic, I bring a builder’s mindset and a coder’s edge.
+  </p>
+</section>
+    
     <section id="contact" class="contact">
       <h2>Contact Me</h2>
       <p>Let’s collaborate or connect — I’m open to new projects in podcasts, media, and tech.</p>
-      <ul>
-        <li>Email: <a href="mailto:Cesarpeflfl@gmail.com" target="_blank">Cesarpeflfl@gmail.com</a></li>
-        <li>GitHub: <a href="https://github.com/cesarpefl" target="_blank">https://github.com/cesarpefl</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/cesar-perez-flores-67198731a/" target="_blank">https://www.linkedin.com/in/cesar-perez-flores-67198731</a></li>
-        <li>Phone: <a href="tel:+17252945085" target="_blank">+1 (725) 294-5085</a></li>
-      </ul>
-    </section>
+     <ul>
+    <li>Email: <a href="mailto:Cesarpeflfl@gmail.com" target="_blank" >Cesarpeflfl@gmail.com</a></li>
+    <li>GitHub: <a href="https://github.com/cesarpefl" target="_blank">https://github.com/cesarpefl</a></li>
+    <li>LinkedIn: <a href="https://www.linkedin.com/in/cesar-perez-flores-67198731a/" target="_blank">https://www.linkedin.com/in/cesar-perez-flores-67198731</a></li>
+   <li>Phone: <a href="tel:+17252945085" target="_blank">+1 (725) 294-5085</a></li>
+
+  </ul>
+</section>
   </main>
 
   <footer>
     <p>&copy; 2025 FLY FLORES. Built by hand with HTML, CSS, and curiosity.</p>
   </footer>
-
   <div class="cursor-glow"></div>
+<script>
+  const glow = document.querySelector('.cursor-glow');
+  document.addEventListener('mousemove', (e) => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+</script>
 
-  <script>
-    const glow = document.querySelector('.cursor-glow');
-    document.addEventListener('mousemove', (e) => {
-      glow.style.left = e.clientX + 'px';
-      glow.style.top = e.clientY + 'px';
-    });
-  </script>
 </body>
 </html>
