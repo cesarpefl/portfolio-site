@@ -46,6 +46,33 @@
       </ul>
     </section>
   </main>
+<section class="audio-player">
+  <h2>Lo-Fi Vibes</h2>
+  <audio id="bg-music" controls loop>
+  <source src="lofizen.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<script>
+  const audio = document.getElementById("bg-music");
+  let musicStarted = false;
+
+  function startMusic() {
+    if (!musicStarted) {
+      audio.volume = 0.2;
+      audio.play();
+      musicStarted = true;
+    }
+  }
+
+  document.body.addEventListener("click", startMusic);
+</script>
+</section>
+
+  <footer>
+    <p>&copy; 2025 FLY FLORES. Built by hand with HTML, CSS, and curiosity.</p>
+  </footer>
+<div class="cursor-glow"></div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const glow = document.querySelector('.cursor-glow');
@@ -55,15 +82,14 @@
     });
   });
 <script>
-  
-  <audio id="bg-music" src="zen_lofi.mp3" loop></audio>
-  const bgMusic = document.getElementById('bg-music');
+  const audio = document.getElementById('bg-music');
   let musicStarted = false;
 
   function startMusic() {
     if (!musicStarted) {
-      bgMusic.volume = 0.2;
-      bgMusic.play().catch(() => {
+      audio.volume = 0.2;  // soft volume
+      audio.play().catch(() => {
+        // Autoplay prevented
         console.log("User interaction required to start audio.");
       });
       musicStarted = true;
@@ -72,12 +98,6 @@
 
   document.body.addEventListener('click', startMusic);
 </script>
-
-  <footer>
-    <p>&copy; 2025 FLY FLORES. Built by hand with HTML, CSS, and curiosity.</p>
-  </footer>
-<div class="cursor-glow"></div>
-
 
 </body>
 </html>
