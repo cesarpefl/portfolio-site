@@ -2,7 +2,155 @@
 
 /* Custom cursor styles */
 body {
-    cursor: none; /* Hide the default cursor */
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+header.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(to right, #ff00cc, #333399);
+}
+
+header.hero h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+header.hero p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #ff00cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.cta:hover {
+  background-color: #d600a3;
+}
+
+main {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.projects iframe {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.resume-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  background-color: #845ec2;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.resume-btn:hover {
+  background-color: #5e3c99;
+}
+
+.contact ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact li {
+  margin-bottom: 0.5rem;
+}
+
+.contact a {
+  color: #a5f3fc;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #111;
+  color: #888;
+}
+
+/* ABOUT ME SECTION */
+.about {
+  margin: 4rem auto;
+  background: radial-gradient(circle at center, #38004c, #0d0d0d);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+  text-align: center;
+  max-width: 800px;
+}
+
+.about h2 {
+  font-size: 2.2rem;
+  color: #ff9eea;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  font-size: 1.1rem;
+  color: #f1d4f5;
+  line-height: 1.8;
+}
+
+/* MOUSE FOLLOWER EFFECT */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: lighten;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.6), rgba(0, 255, 255, 0.3), transparent);
+  box-shadow:
+    0 0 20px rgba(255, 0, 255, 0.6),
+    0 0 40px rgba(0, 255, 255, 0.4),
+    0 0 80px rgba(255, 255, 255, 0.2);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Optional: Hide system cursor */
+body {
+  cursor: none;
 }
 
 .cursor-inner {
