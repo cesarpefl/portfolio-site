@@ -81,15 +81,16 @@
       glow.style.top = e.clientY + 'px';
     });
   });
+<audio id="bg-music" src="zen_lofi.mp3" loop></audio>
+
 <script>
-  const audio = document.getElementById('bg-music');
+  const bgMusic = document.getElementById('bg-music');
   let musicStarted = false;
 
   function startMusic() {
     if (!musicStarted) {
-      audio.volume = 0.2;  // soft volume
-      audio.play().catch(() => {
-        // Autoplay prevented
+      bgMusic.volume = 0.2;
+      bgMusic.play().catch(() => {
         console.log("User interaction required to start audio.");
       });
       musicStarted = true;
