@@ -1,63 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cesar Flores | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header class="hero">
-    <h1>Hey, I'm Cesar Flores</h1>
-    <p>Builder. Coder. Creative in entertainment and tech.</p>
-    <a href="#contact" class="cta">Get in Touch</a>
-  </header>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #111;
+  color: #f2f2f2;
+  line-height: 1.6;
+}
 
-  <main>
-    <section class="projects">
-      <h2>Featured Project: My Scratch Game</h2>
-      <div class="project-content">
-        <iframe src="https://scratch.mit.edu/projects/1167737813/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
-        <p>This game was built in Scratch and showcases my early passion for game development and visual logic. It’s simple but represents a creative start in interactive entertainment.</p>
-      </div>
-    </section>
+a {
+  color: #00b7ff;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
 
-    <section class="resume">
-      <h2>My Resume</h2>
-      <p>You can view or download my resume below:</p>
- <a href="https://github.com/cesarpefl/portfolio-site/blob/main/Cesar%20Resume.pdf" target="_blank" class="resume-btn">📄 View Resume (PDF)</a>
-</section>
-    <section class="about">
-  <h2>About Me</h2>
-  <p>
-    I'm Cesar Flores — a hands-on creator with roots in carpentry, mechanics, and tech. From fixing engines to building interactive games, I’m all about turning ideas into reality. Now I’m blending those skills with my love for music, podcasts, and film to make something truly original. Whether it’s behind the scenes or on the mic, I bring a builder’s mindset and a coder’s edge.
-  </p>
-</section>
-    
-    <section id="contact" class="contact">
-      <h2>Contact Me</h2>
-      <p>Let’s collaborate or connect — I’m open to new projects in podcasts, media, and tech.</p>
-     <ul>
-    <li>Email: <a href="mailto:Cesarpeflfl@gmail.com" target="_blank" >Cesarpeflfl@gmail.com</a></li>
-    <li>GitHub: <a href="https://github.com/cesarpefl" target="_blank">https://github.com/cesarpefl</a></li>
-    <li>LinkedIn: <a href="https://www.linkedin.com/in/cesar-perez-flores-67198731a/" target="_blank">https://www.linkedin.com/in/cesar-perez-flores-67198731</a></li>
-   <li>Phone: <a href="tel:+17252945085" target="_blank">+1 (725) 294-5085</a></li>
+a:hover {
+  text-decoration: underline;
+  color: #1ecfff;
+}
 
-  </ul>
-</section>
-  </main>
+.hero {
+  background: linear-gradient(135deg, #000000, #222222);
+  padding: 4rem 2rem;
+  text-align: center;
+}
 
-  <footer>
-    <p>&copy; 2025 FLY FLORES. Built by hand with HTML, CSS, and curiosity.</p>
-  </footer>
-  <div class="cursor-glow"></div>
-<script>
-  const glow = document.querySelector('.cursor-glow');
-  document.addEventListener('mousemove', (e) => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
-  });
-</script>
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
 
-</body>
-</html>
+.hero p {
+  font-size: 1.25rem;
+  color: #ccc;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #00b7ff;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta:hover {
+  background-color: #1ecfff;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.projects,
+.resume,
+.contact {
+  margin-bottom: 3rem;
+  background: #1a1a1a;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.about {
+  margin-bottom: 3rem;
+  background: radial-gradient(circle at center, #38004c, #0d0d0d);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+  text-align: center;
+}
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,0,255,0.4), transparent 40%);
+  pointer-events: none;
+  z-index: 1000;
+  transition: transform 0.05s ease;
+  mix-blend-mode: screen;
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #ff9eea;
+}
+
+.about p {
+  font-size: 1.1rem;
+  color: #f1d4f5;
+  line-height: 1.8;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-content iframe {
+  margin-bottom: 1rem;
+}
+
+.resume-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #00b7ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.resume-btn:hover {
+  background-color: #1ecfff;
+}
+
+.contact ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.contact li {
+  margin-bottom: 0.75rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #0a0a0a;
+  font-size: 0.9rem;
+  color: #666;
+}
