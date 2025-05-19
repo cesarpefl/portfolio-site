@@ -1,217 +1,113 @@
-// Comprehensive fixed script.js - Preserving ALL cursor effects and animations
+// No-library solution for cursor effects and music playback
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Custom cursor functionality with all original effects preserved
+    // Custom cursor functionality without external libraries
     const cursorInner = document.querySelector('.cursor-inner');
     const cursorOuter = document.querySelector('.cursor-outer');
     
     // Track cursor state
     let cursorVisible = false;
-    let cursorScale = false;
-    let cursorHidden = false;
-    let lastX = 0;
-    let lastY = 0;
+    let cursorScaled = false;
     let mouseX = 0;
     let mouseY = 0;
+    let outerX = 0;
+    let outerY = 0;
     
-    // Show the custom cursor
+    // Animation properties
+    const innerEaseSpeed = 0.2;
+    const outerEaseSpeed = 0.1;
+    let animationFrameId = null;
+    
+    // Show the cursor with CSS transitions
     const showCursor = function() {
         if (!cursorVisible) {
-            gsap.to(cursorInner, {
-                duration: 0.35,
-                opacity: 1,
-                ease: "power3.out"
-            });
-            gsap.to(cursorOuter, {
-                duration: 0.35,
-                opacity: 1,
-                ease: "power3.out"
-            });
+            cursorInner.style.opacity = 1;
+            cursorOuter.style.opacity = 1;
             cursorVisible = true;
         }
     };
     
-    // Hide the custom cursor
+    // Hide the cursor with CSS transitions
     const hideCursor = function() {
-        if (cursorVisible && !cursorHidden) {
-            gsap.to(cursorInner, {
-                duration: 0.35,
-                opacity: 0,
-                ease: "power3.out"
-            });
-            gsap.to(cursorOuter, {
-                duration: 0.35,
-                opacity: 0,
-                ease: "power3.out"
-            });
+        if (cursorVisible) {
+            cursorInner.style.opacity = 0;
+            cursorOuter.style.opacity = 0;
             cursorVisible = false;
         }
     };
     
-    // Mouse movement tracking with the original smooth animation
+    // Custom animation function (replacement for GSAP)
+    const animate = function() {
+        // Inner cursor follows mouse position instantly
+        cursorInner.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        
+        // Outer cursor follows with smooth delay using linear interpolation
+        outerX += (mouseX - outerX) * outerEaseSpeed;
+        outerY += (mouseY - outerY) * outerEaseSpeed;
+        cursorOuter.style.transform = `translate(${outerX}px, ${outerY}px)`;
+        
+        // Continue animation loop
+        animationFrameId = requestAnimationFrame(animate);
+    };
+    
+    // Start animation loop
+    animate();
+    
+    // Mouse movement tracking
     const mousemoveHandler = function(e) {
+        // Get mouse position
         mouseX = e.clientX;
         mouseY = e.clientY;
         
-        // Show cursor
+        // Show cursor on movement
         showCursor();
-        
-        // Position inner cursor instantly at mouse position
-        gsap.to(cursorInner, {
-            duration: 0.1,
-            x: mouseX,
-            y: mouseY,
-            ease: "power3.out"
-        });
-        
-        // Position outer cursor with slight delay for the trailing effect
-        if (!cursorHidden) {
-            gsap.to(cursorOuter, {
-                duration: cursorScale ? 0.6 : 0.3,
-                x: mouseX,
-                y: mouseY,
-                ease: "power3.out"
-            });
-        }
-        
-        // Store last position
-        lastX = mouseX;
-        lastY = mouseY;
     };
     
-    // Hide cursor when mouse leaves window
+    // Handle cursor when mouse leaves window
     const mouseleaveHandler = function() {
         hideCursor();
     };
     
-    // Track when mouse enters window
+    // Handle cursor when mouse enters window
     const mouseenterHandler = function() {
         showCursor();
-        cursorHidden = false;
     };
     
-    // Enhanced cursor scaling effect for hovering over links/buttons
-    const handleLinkHoverEnter = function(e) {
-        cursorScale = true;
-        // Preserve the original scaling animation
-        gsap.to(cursorInner, {
-            duration: 0.4,
-            scale: 1.5,
-            ease: "power3.out"
-        });
-        gsap.to(cursorOuter, {
-            duration: 0.4,
-            scale: 1.5,
-            ease: "power3.out",
-            borderWidth: '1px',
-            borderColor: 'rgba(255, 255, 255, 0.2)',
-            backgroundColor: 'rgba(255, 255, 255, 0.1)'
-        });
+    // Handle hover effect on links/buttons
+    const handleLinkHoverEnter = function() {
+        cursorScaled = true;
+        cursorInner.classList.add('cursor-hover');
+        cursorOuter.classList.add('cursor-hover');
     };
     
-    // Reset cursor when not hovering over links/buttons
+    // Reset hover effect
     const handleLinkHoverLeave = function() {
-        cursorScale = false;
-        gsap.to(cursorInner, {
-            duration: 0.4,
-            scale: 1,
-            ease: "power3.out"
-        });
-        gsap.to(cursorOuter, {
-            duration: 0.4,
-            scale: 1,
-            ease: "power3.out",
-            borderWidth: '1px',
-            borderColor: 'rgba(255, 255, 255, 0.5)',
-            backgroundColor: 'transparent'
-        });
+        cursorScaled = false;
+        cursorInner.classList.remove('cursor-hover');
+        cursorOuter.classList.remove('cursor-hover');
     };
     
-    // Add click effect animation
+    // Handle project card hover effects
+    const handleProjectHoverEnter = function() {
+        cursorOuter.classList.add('project-hover');
+    };
+    
+    // Reset project card hover effects
+    const handleProjectHoverLeave = function() {
+        cursorOuter.classList.remove('project-hover');
+    };
+    
+    // Handle click effect
     const handleMouseDown = function() {
-        gsap.to(cursorInner, {
-            duration: 0.2,
-            scale: 0.7,
-            ease: "power3.out"
-        });
-        gsap.to(cursorOuter, {
-            duration: 0.2,
-            scale: 0.7,
-            ease: "power3.out"
-        });
+        cursorInner.classList.add('cursor-click');
+        cursorOuter.classList.add('cursor-click');
     };
     
     // Reset after click
     const handleMouseUp = function() {
-        gsap.to(cursorInner, {
-            duration: 0.2,
-            scale: cursorScale ? 1.5 : 1,
-            ease: "power3.out"
-        });
-        gsap.to(cursorOuter, {
-            duration: 0.2,
-            scale: cursorScale ? 1.5 : 1,
-            ease: "power3.out"
-        });
+        cursorInner.classList.remove('cursor-click');
+        cursorOuter.classList.remove('cursor-click');
     };
-    
-    // Handle cursor behavior when text is being selected
-    const handleMouseDragStart = function() {
-        cursorHidden = true;
-        gsap.to(cursorInner, {
-            duration: 0.2,
-            opacity: 0,
-            ease: "power3.out"
-        });
-        gsap.to(cursorOuter, {
-            duration: 0.2,
-            opacity: 0,
-            ease: "power3.out"
-        });
-    };
-    
-    // Reset after text selection
-    const handleMouseDragEnd = function() {
-        cursorHidden = false;
-        gsap.to(cursorInner, {
-            duration: 0.2,
-            opacity: 1,
-            x: mouseX,
-            y: mouseY,
-            ease: "power3.out"
-        });
-        gsap.to(cursorOuter, {
-            duration: 0.2,
-            opacity: 1,
-            x: mouseX,
-            y: mouseY,
-            ease: "power3.out"
-        });
-    };
-    
-    // Cursor moving animation - to ensure smooth animation when cursor is still
-    const renderCursor = function() {
-        // Only run if we have cursor coordinates
-        if (mouseX && mouseY) {
-            // Make sure inner cursor is properly positioned
-            gsap.set(cursorInner, {
-                x: mouseX,
-                y: mouseY
-            });
-            
-            // Add slight smoothing for outer cursor when not scaling
-            if (!cursorScale) {
-                gsap.set(cursorOuter, {
-                    x: gsap.utils.interpolate(gsap.getProperty(cursorOuter, "x"), mouseX, 0.15),
-                    y: gsap.utils.interpolate(gsap.getProperty(cursorOuter, "y"), mouseY, 0.15)
-                });
-            }
-        }
-        requestAnimationFrame(renderCursor);
-    };
-    
-    // Start the animation loop
-    renderCursor();
     
     // Add all event listeners
     document.addEventListener('mousemove', mousemoveHandler);
@@ -219,41 +115,18 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('mouseenter', mouseenterHandler);
     document.addEventListener('mousedown', handleMouseDown);
     document.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('selectstart', handleMouseDragStart);
-    document.addEventListener('selectend', handleMouseDragEnd);
-    
-    // Handle text selection end event (selectend isn't standard)
-    document.addEventListener('mouseup', function() {
-        if (window.getSelection().toString().length === 0 && cursorHidden) {
-            handleMouseDragEnd();
-        }
-    });
     
     // Add hover effect to all clickable elements
-    const clickables = document.querySelectorAll('a, button, .btn, input[type="submit"], .project-card, .nav-link');
+    const clickables = document.querySelectorAll('a, button, .btn, input[type="submit"], .nav-link');
     clickables.forEach(element => {
         element.addEventListener('mouseenter', handleLinkHoverEnter);
         element.addEventListener('mouseleave', handleLinkHoverLeave);
     });
     
-    // Special effects for different element types
+    // Special effects for project cards
     document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            gsap.to(cursorOuter, {
-                duration: 0.4,
-                backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                scale: 1.7,
-                mixBlendMode: 'difference'
-            });
-        });
-        card.addEventListener('mouseleave', function() {
-            gsap.to(cursorOuter, {
-                duration: 0.4,
-                backgroundColor: 'transparent',
-                scale: 1,
-                mixBlendMode: 'normal'
-            });
-        });
+        card.addEventListener('mouseenter', handleProjectHoverEnter);
+        card.addEventListener('mouseleave', handleProjectHoverLeave);
     });
     
     // Fix music player functionality
@@ -268,17 +141,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (musicToggle && backgroundMusic) {
         musicToggle.addEventListener('click', function() {
             if (musicPlaying) {
+                // Pause music
                 backgroundMusic.pause();
                 statusText.textContent = 'Music: Off';
                 musicPlaying = false;
                 
                 // Update music button appearance
-                gsap.to(musicToggle, {
-                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                    duration: 0.3
-                });
+                musicToggle.classList.remove('playing');
             } else {
-                // This promise handling is important for browsers that block autoplay
+                // Try to play music
                 const playPromise = backgroundMusic.play();
                 
                 if (playPromise !== undefined) {
@@ -288,59 +159,62 @@ document.addEventListener('DOMContentLoaded', function() {
                         musicPlaying = true;
                         
                         // Update music button appearance
-                        gsap.to(musicToggle, {
-                            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-                            duration: 0.3
-                        });
+                        musicToggle.classList.add('playing');
                     })
                     .catch(error => {
                         // Auto-play was prevented
                         console.error('Music playback was prevented:', error);
                         statusText.textContent = 'Music: Off (Click to enable)';
                         
-                        // Show user-friendly notification
-                        const notification = document.createElement('div');
-                        notification.className = 'music-notification';
-                        notification.innerHTML = 'Click again to enable music';
-                        document.body.appendChild(notification);
-                        
-                        gsap.to(notification, {
-                            opacity: 1,
-                            y: -20,
-                            duration: 0.5,
-                            onComplete: function() {
-                                setTimeout(function() {
-                                    gsap.to(notification, {
-                                        opacity: 0,
-                                        y: 0,
-                                        duration: 0.5,
-                                        onComplete: function() {
-                                            notification.remove();
-                                        }
-                                    });
-                                }, 3000);
-                            }
-                        });
+                        // Show notification
+                        showMusicNotification('Click again to enable music');
                     });
                 }
             }
         });
     }
     
-    // Preload the audio to make it more likely to play on first click
+    // Function to show temporary music notification
+    function showMusicNotification(message) {
+        // Remove any existing notification
+        const existingNotification = document.querySelector('.music-notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+        
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = 'music-notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        // Show notification with animation
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateY(-10px)';
+        }, 10);
+        
+        // Hide and remove after a delay
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateY(10px)';
+            
+            // Remove from DOM after animation
+            setTimeout(() => {
+                notification.remove();
+            }, 500);
+        }, 3000);
+    }
+    
+    // Preload the audio
     if (backgroundMusic) {
         backgroundMusic.load();
-        
-        // Add a listener for when music ends (if not on loop)
-        backgroundMusic.addEventListener('ended', function() {
-            if (!backgroundMusic.loop) {
-                statusText.textContent = 'Music: Off';
-                musicPlaying = false;
-                gsap.to(musicToggle, {
-                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                    duration: 0.3
-                });
-            }
-        });
     }
+    
+    // Clean up on page unload
+    window.addEventListener('beforeunload', function() {
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+        }
+    });
 });
