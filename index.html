@@ -1,103 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cesar Flores | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header class="hero">
-    <h1>Hey, I'm Cesar Flores</h1>
-    <p>Builder. Coder. Creative in entertainment and tech.</p>
-    <a href="#contact" class="cta">Get in Touch</a>
-  </header>
+// Fixed script.js - Focus on cursor and music functionality only
 
-  <main>
-    <section class="about">
-      <h2>About Me</h2>
-      <p>
-        I'm Cesar Flores — a hands-on creator with roots in carpentry, mechanics, and tech. From fixing engines to building interactive games, I’m all about turning ideas into reality. Now I’m blending those skills with my love for music, podcasts, and film to make something truly original. Whether it’s behind the scenes or on the mic, I bring a builder’s mindset and a coder’s edge.
-      </p>
-    </section>
-
-    <section class="projects">
-      <h2>Featured Project: My Scratch Game</h2>
-      <div class="project-content">
-        <iframe src="https://scratch.mit.edu/projects/1167737813/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
-        <p>This game was built in Scratch and showcases my early passion for game development and visual logic. It’s simple but represents a creative start in interactive entertainment.</p>
-      </div>
-    </section>
-
-    <section class="resume">
-      <h2>My Resume</h2>
-      <p>You can view or download my resume below:</p>
-      <a href="https://github.com/cesarpefl/portfolio-site/blob/main/Cesar%20Resume.pdf" target="_blank" class="resume-btn">📄 View Resume (PDF)</a>
-    </section>
-
-    <section id="contact" class="contact">
-      <h2>Contact Me</h2>
-      <p>Let’s collaborate or connect — I’m open to new projects in podcasts, media, and tech.</p>
-      <ul>
-        <li>Email: <a href="mailto:Cesarpeflfl@gmail.com" target="_blank">Cesarpeflfl@gmail.com</a></li>
-        <li>GitHub: <a href="https://github.com/cesarpefl" target="_blank">https://github.com/cesarpefl</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/cesar-perez-flores-67198731a/" target="_blank">https://www.linkedin.com/in/cesar-perez-flores-67198731</a></li>
-        <li>Phone: <a href="tel:+17252945085" target="_blank">+1 (725) 294-5085</a></li>
-      </ul>
-    </section>
-  </main>
-<section class="audio-player">
-  <h2>Lo-Fi Vibes</h2>
-  <audio id="bg-music" controls loop>
-  <source src="lofizen.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-<script>
-  const audio = document.getElementById("bg-music");
-  let musicStarted = false;
-
-  function startMusic() {
-    if (!musicStarted) {
-      audio.volume = 0.2;
-      audio.play();
-      musicStarted = true;
-    }
-  }
-
-  document.body.addEventListener("click", startMusic);
-</script>
-</section>
-
-  <footer>
-    <p>&copy; 2025 FLY FLORES. Built by hand with HTML, CSS, and curiosity.</p>
-  </footer>
-<div class="cursor-glow"></div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const glow = document.querySelector('.cursor-glow');
-    document.addEventListener('mousemove', (e) => {
-      glow.style.left = e.clientX + 'px';
-      glow.style.top = e.clientY + 'px';
+document.addEventListener('DOMContentLoaded', function() {
+    // Custom cursor functionality
+    const cursorInner = document.querySelector('.cursor-inner');
+    const cursorOuter = document.querySelector('.cursor-outer');
+    
+    // Track if the cursor is visible
+    let cursorVisible = false;
+    
+    // Show the cursor when mouse moves
+    const showCursor = function() {
+        if (!cursorVisible) {
+            cursorInner.style.opacity = 1;
+            cursorOuter.style.opacity = 1;
+            cursorVisible = true;
+        }
+    };
+    
+    // Hide the cursor when inactive
+    const hideCursor = function() {
+        if (cursorVisible) {
+            cursorInner.style.opacity = 0;
+            cursorOuter.style.opacity = 0;
+            cursorVisible = false;
+        }
+    };
+    
+    // Update cursor position
+    const mousemove = function(e) {
+        showCursor();
+        
+        // Position both cursors at the mouse position with a slight delay for the outer cursor
+        cursorInner.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        
+        // Add a small delay to outer cursor for the trailing effect
+        setTimeout(() => {
+            cursorOuter.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        }, 80);
+    };
+    
+    // Hide cursor when mouse leaves window
+    const mouseleave = function() {
+        hideCursor();
+    };
+    
+    // Handle link hover effect
+    const handleLinkHover = function() {
+        // Expand cursor when hovering over links
+        cursorInner.classList.add('cursor-hover');
+        cursorOuter.classList.add('cursor-hover');
+    };
+    
+    const handleLinkUnhover = function() {
+        // Return cursor to normal state
+        cursorInner.classList.remove('cursor-hover');
+        cursorOuter.classList.remove('cursor-hover');
+    };
+    
+    // Add event listeners
+    document.addEventListener('mousemove', mousemove);
+    document.addEventListener('mouseleave', mouseleave);
+    
+    // Add hover effect to all clickable elements
+    const clickables = document.querySelectorAll('a, button, .btn, input[type="submit"]');
+    clickables.forEach(element => {
+        element.addEventListener('mouseenter', handleLinkHover);
+        element.addEventListener('mouseleave', handleLinkUnhover);
     });
-  });
-<script>
-  const audio = document.getElementById('bg-music');
-  let musicStarted = false;
-
-  function startMusic() {
-    if (!musicStarted) {
-      audio.volume = 0.2;  // soft volume
-      audio.play().catch(() => {
-        // Autoplay prevented
-        console.log("User interaction required to start audio.");
-      });
-      musicStarted = true;
+    
+    // Fix music player functionality
+    const musicToggle = document.getElementById('toggleMusic');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const statusText = document.querySelector('.status-text');
+    
+    // Initialize music state
+    let musicPlaying = false;
+    
+    // Fix music toggle functionality
+    if (musicToggle && backgroundMusic) {
+        musicToggle.addEventListener('click', function() {
+            if (musicPlaying) {
+                backgroundMusic.pause();
+                statusText.textContent = 'Music: Off';
+                musicPlaying = false;
+            } else {
+                // This promise handling is important for browsers that block autoplay
+                const playPromise = backgroundMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Playback started successfully
+                        statusText.textContent = 'Music: On';
+                        musicPlaying = true;
+                    })
+                    .catch(error => {
+                        // Auto-play was prevented
+                        console.error('Music playback was prevented:', error);
+                        statusText.textContent = 'Music: Off (Blocked by browser)';
+                        // Display a user-friendly message
+                        alert('Music playback was blocked by your browser. Please click the play button again to enable music.');
+                    });
+                }
+            }
+        });
     }
-  }
-
-  document.body.addEventListener('click', startMusic);
-</script>
-
-</body>
-</html>
+    
+    // Preload the audio to make it more likely to play on first click
+    if (backgroundMusic) {
+        backgroundMusic.load();
+    }
+});
